@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+    <style>
+        /* O mesmo CSS das telas anteriores */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #050A30 0%, #1B0044 50%, #2E0249 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .glass-panel input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .glass-panel input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .glass-panel button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #00f2fe;
+            color: #050A30;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .glass-panel button:hover {
+            background: #4facfe;
+        }
+
+        .btn-voltar {
+            display: block;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-voltar:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-panel">
+        <h2>Editar Usuário</h2>
+        <form action="/update" method="POST">
+            <input type="hidden" name="id" value="{{.Id}}">
+
+            <input type="text" name="nome" value="{{.Nome}}" required>
+            <input type="email" name="email" value="{{.Email}}" required>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        <a href="/dashboard" class="btn-voltar">Cancelar e Voltar</a>
+    </div>
+
+</body>
+
+</html>

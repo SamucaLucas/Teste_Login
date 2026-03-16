@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #050A30 0%, #1B0044 50%, #2E0249 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        /* NOVO: Estilo do Alerta de Erro em Vidro Vermelho */
+        .alerta-erro {
+            background: rgba(255, 77, 77, 0.2);
+            /* Fundo vermelho translúcido */
+            border: 1px solid rgba(255, 77, 77, 0.4);
+            /* Borda vermelha sutil */
+            color: #ffb3b3;
+            /* Texto num tom de rosa/vermelho claro */
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .glass-panel input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .glass-panel input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .glass-panel button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .glass-panel button:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-panel">
+        <h2>Entrar</h2>
+
+        {{if .}}
+        <div class="alerta-erro">
+            {{.}}
+        </div>
+        {{end}}
+
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <input type="password" name="senha" placeholder="Sua senha" required>
+            <button type="submit">Acessar</button>
+        </form>
+        <p style="font-size: 14px; margin-top: 20px;">
+            Não tem conta? <a href="/cadastro" style="color: #00f2fe;">Cadastre-se</a>
+        </p>
+    </div>
+
+</body>
+
+</html>
