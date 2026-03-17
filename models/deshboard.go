@@ -40,3 +40,21 @@ func BuscarTodosUsuarios() []Usuario {
 	return usuarios
 }
 
+// DeletarUsuario remove um registro do banco de dados pelo ID
+func DeletarUsuario(id string) {
+	db := config.ConectarBD()
+	defer db.Close()
+
+	// Prepara a query de DELETE
+	deletarRegistro, err := db.Prepare("DELETE FROM usuarios WHERE id=$1")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer deletarRegistro.Close()
+
+	// Executa a exclusão passando o ID
+	_, err = deletarRegistro.Exec(id)
+	if err != nil {
+		panic(err.Error())
+	}
+}

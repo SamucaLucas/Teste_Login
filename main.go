@@ -19,6 +19,8 @@ func main() {
 	http.HandleFunc("/update", controllers.Atualizar)
 	http.HandleFunc("/insert", controllers.ProcessarCadastro)
 
+	http.HandleFunc("/deletar", controllers.Deletar)
+
 	fmt.Println("Servidor rodando na porta 8080...")
 	fmt.Println("Acesse: http://localhost:8080")
 	http.ListenAndServe(":8080", nil)

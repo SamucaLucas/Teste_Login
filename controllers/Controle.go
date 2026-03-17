@@ -150,3 +150,22 @@ func Atualizar(w http.ResponseWriter, r *http.Request) {
 	// Volta para o dashboard
 	http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
 }
+
+// Deletar remove o usuário e volta para o dashboard
+func Deletar(w http.ResponseWriter, r *http.Request) {
+	// Proteção: verifica se está logado
+	session, _ := store.Get(r, "sessao-app-vidro")
+	if auth, ok := session.Values["autenticado"].(bool); !ok || !auth {
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		return
+	}
+
+	// Pega o ID da URL
+	idDoUsuario := r.URL.Query().Get("id")
+
+	// Chama o model para deletar no banco
+	models.DeletarUsuario(idDoUsuario)
+
+	// Redireciona de volta para a lista atualizada
+	http.Redirect(w, r, "/dashboard", http.StatusMovedPermanently)
+}
